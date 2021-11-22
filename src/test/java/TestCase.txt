@@ -1,0 +1,11 @@
+Summary: Tab should be visible at repository page
+Preconditions:
+1. Open "GitHub.com"
+
+Steps:
+1. Enter repository name into input field
+2. Press enter
+3. Go to the repository page clicking at the repository name
+4. Check if tab is visible
+
+Expected Result: tab is visible
