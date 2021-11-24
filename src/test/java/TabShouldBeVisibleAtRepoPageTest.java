@@ -12,10 +12,10 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class TabShouldBeVisibleAtRepoPageTest {
 
-    private static final String TABNAME = "Issues";
+    private static final String TABNAME = "Actions";
 
 
-    // Проверяем, что на страничках реп selenide и allure есть таба Issue
+    // Проверяем, что на страничках реп selenide и allure есть таба Actions
     @ValueSource(strings = {"selenide", "allure"})
     @Tag("Blocker")
     @ParameterizedTest(name = "Tab should be visible at {0} page")
@@ -26,9 +26,9 @@ public class TabShouldBeVisibleAtRepoPageTest {
         $(byPartialLinkText(TABNAME)).shouldBe(visible);
     }
 
-    // проверяем, что на странице репы selenide есть таба Issue, а на стр. репы allure таба Pull requests
+    // проверяем, что на странице репы selenide есть таба Actions, а на стр. репы allure таба Pull requests
     @CsvSource(value = {
-            "selenide* Issues",
+            "selenide* Actions",
             "allure* Pull requests"
     },
             delimiter = '*')
@@ -41,11 +41,11 @@ public class TabShouldBeVisibleAtRepoPageTest {
         $(byPartialLinkText(tabName)).shouldBe(visible);
     }
 
-    // чекаем, что на страницах реп selenide и allure есть табы Issues и Pull requests
+    // чекаем, что на страницах реп selenide и allure есть табы Actions и Pull requests
     static Stream<Arguments> tabShouldBeVisibleMethodSource() {
         return Stream.of(
-                Arguments.of("selenide", List.of("Issues", "Pull requests")),
-                Arguments.of("allure", List.of("Issues", "Pull requests"))
+                Arguments.of("selenide", List.of("Actions", "Pull requests")),
+                Arguments.of("allure", List.of("Actions", "Pull requests"))
         );
     }
 
@@ -60,15 +60,15 @@ public class TabShouldBeVisibleAtRepoPageTest {
         $(byPartialLinkText(tabName.get(1))).shouldBe(visible);
     }
 
-    // Проверяем, что на страничках реп selenide и allure есть таба Issue
+    // Проверяем, что на страничках реп selenide и allure есть таба Actions
     @EnumSource(RepoName.class)
     @Tag("Blocker")
-    @ParameterizedTest(name = "Issues tab should be visible at {0} repo page")
+    @ParameterizedTest(name = "Actions tab should be visible at {0} repo page")
     void tabShouldBeVisibleEnumSource(RepoName repoName) {
         open("https://github.com");
         $("[name=q]").setValue(String.valueOf(repoName)).pressEnter();
         $(byPartialLinkText(String.valueOf(repoName))).click();
-        $(byPartialLinkText("Issues")).shouldBe(visible);
+        $(byPartialLinkText("Actions")).shouldBe(visible);
     }
 
 
